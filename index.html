@@ -108,6 +108,103 @@
           </ul>
         </aside>
       </section>
+
+      <section class="layout-grid reporting-grid">
+        <section class="card card-wide">
+          <div class="section-heading stacked">
+            <div>
+              <p class="eyebrow">Status reporting</p>
+              <h2>PM update input</h2>
+            </div>
+            <p class="section-note">Capture health, confidence, blockers, and next steps for the selected workspace. Entries are saved in this browser for the proof of concept.</p>
+          </div>
+
+          <form id="statusForm" class="status-form">
+            <div class="form-grid">
+              <label class="field">
+                <span class="field-label">Project manager</span>
+                <input id="pmName" name="pmName" type="text" placeholder="Anthony Di Clemente" required>
+              </label>
+              <label class="field">
+                <span class="field-label">Reporting period</span>
+                <input id="reportingPeriod" name="reportingPeriod" type="text" placeholder="Week of March 18, 2026" required>
+              </label>
+              <label class="field">
+                <span class="field-label">Project health</span>
+                <select id="projectHealth" name="projectHealth" required>
+                  <option value="Green">Green</option>
+                  <option value="Amber">Amber</option>
+                  <option value="Red">Red</option>
+                </select>
+              </label>
+              <label class="field">
+                <span class="field-label">Delivery confidence</span>
+                <select id="deliveryConfidence" name="deliveryConfidence" required>
+                  <option value="High">High</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Low">Low</option>
+                </select>
+              </label>
+              <label class="field">
+                <span class="field-label">Budget status</span>
+                <select id="budgetStatus" name="budgetStatus" required>
+                  <option value="On track">On track</option>
+                  <option value="At risk">At risk</option>
+                  <option value="Off track">Off track</option>
+                </select>
+              </label>
+              <label class="field">
+                <span class="field-label">Schedule status</span>
+                <select id="scheduleStatus" name="scheduleStatus" required>
+                  <option value="On track">On track</option>
+                  <option value="At risk">At risk</option>
+                  <option value="Off track">Off track</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="form-grid full">
+              <label class="field field-wide">
+                <span class="field-label">Executive summary</span>
+                <textarea id="executiveSummary" name="executiveSummary" rows="3" placeholder="Short summary for leadership..." required></textarea>
+              </label>
+              <label class="field field-wide">
+                <span class="field-label">Key accomplishments</span>
+                <textarea id="accomplishments" name="accomplishments" rows="3" placeholder="What moved forward this period?"></textarea>
+              </label>
+              <label class="field field-wide">
+                <span class="field-label">Top blockers / risks</span>
+                <textarea id="risksBlockers" name="risksBlockers" rows="3" placeholder="Dependencies, client decisions, staffing issues..."></textarea>
+              </label>
+              <label class="field field-wide">
+                <span class="field-label">Decisions needed</span>
+                <textarea id="decisionsNeeded" name="decisionsNeeded" rows="3" placeholder="What do you need from sponsors or leadership?"></textarea>
+              </label>
+              <label class="field field-wide">
+                <span class="field-label">Next steps</span>
+                <textarea id="nextStepsInput" name="nextStepsInput" rows="3" placeholder="What happens next?"></textarea>
+              </label>
+            </div>
+
+            <div class="form-actions">
+              <button class="button button-primary" type="submit">Save Status Report</button>
+              <button id="clearDraftButton" class="button button-secondary" type="button">Clear Draft</button>
+              <span id="saveMessage" class="save-message" aria-live="polite"></span>
+            </div>
+          </form>
+        </section>
+
+        <aside class="card">
+          <div class="section-heading stacked">
+            <div>
+              <p class="eyebrow">Saved updates</p>
+              <h2>Recent reports</h2>
+            </div>
+            <p class="section-note">Latest entries captured in the app for the selected workspace.</p>
+          </div>
+          <div id="reportHistory" class="report-history"></div>
+        </aside>
+      </section>
     </main>
   </div>
 
