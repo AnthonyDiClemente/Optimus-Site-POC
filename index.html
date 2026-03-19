@@ -6,206 +6,282 @@
   <title>Optimus SBR Mavenlink PM Hub</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
   <div class="page-shell">
-    <header class="hero">
-      <div class="hero-copy">
-        <p class="eyebrow">Optimus SBR x Mavenlink Proof of Concept</p>
-        <h1>Project managers get a live portfolio read without opening five tools.</h1>
-        <p class="hero-text">
-          This concept uses your attached Mavenlink-style parquet sample to frame workspaces, staffing pressure,
-          vertical mix, and delivery risk in a Teams-friendly interface.
-        </p>
-        <div class="hero-actions">
-          <a id="secureLaunchLink" class="button button-primary" href="#" target="_blank" rel="noreferrer">Open Secure Preview</a>
-          <a class="button button-secondary" href="#portfolio">Jump to Portfolio</a>
-        </div>
-        <div class="hero-meta">
+    <div class="app-shell">
+      <aside class="app-sidebar">
+        <div class="sidebar-brand">
+          <span class="sidebar-mark">O</span>
           <div>
-            <span class="meta-label">HTTPS link</span>
-            <span id="secureLaunchText" class="meta-value"></span>
-          </div>
-          <div>
-            <span class="meta-label">Teams-ready</span>
-            <span class="meta-value">Static site deployable to SharePoint, Azure Static Web Apps, or GitHub Pages</span>
+            <div class="sidebar-title">Optimus PM Hub</div>
+            <div class="sidebar-subtitle">Mavenlink status POC</div>
           </div>
         </div>
-      </div>
-      <aside class="hero-panel">
-        <div class="hero-panel-card">
-          <span class="panel-kicker">Today's PM brief</span>
-          <h2 id="pmBriefTitle"></h2>
-          <p id="pmBriefText"></p>
-          <ul id="pmBriefList" class="brief-list"></ul>
+
+        <nav class="sidebar-nav">
+          <button class="nav-button is-active" type="button" data-view="overview">Overview</button>
+          <button class="nav-button" type="button" data-view="workspace">Workspace</button>
+          <button class="nav-button" type="button" data-view="reporting">Status Update</button>
+          <button class="nav-button" type="button" data-view="history">Recent Reports</button>
+        </nav>
+
+        <div class="sidebar-meta">
+          <a id="secureLaunchLink" class="button button-primary sidebar-launch" href="#" target="_blank" rel="noreferrer">Open Live App</a>
         </div>
       </aside>
-    </header>
 
-    <main>
-      <section class="summary-grid" id="summaryGrid"></section>
-
-      <section class="layout-grid" id="portfolio">
-        <section class="card card-wide">
-          <div class="section-heading">
+      <main class="app-main">
+        <section class="topbar">
+          <div class="topbar-brand">
+            <img class="topbar-logo" src="./logo-mark.png" alt="Optimus SBR logo">
             <div>
-              <p class="eyebrow">Portfolio command centre</p>
-              <h2>Workspace watchlist</h2>
-            </div>
-            <div class="toolbar">
-              <label class="filter-label" for="projectFilter">View</label>
-              <select id="projectFilter">
-                <option value="all">All workspaces</option>
-                <option value="client">Client delivery</option>
-                <option value="internal">Internal / SG&amp;A</option>
-              </select>
+              <div class="topbar-title">Good morning</div>
+              <div class="topbar-subtitle">Project reporting workspace for today's refresh</div>
             </div>
           </div>
-          <div id="projectCards" class="project-cards"></div>
-        </section>
-
-        <aside class="card">
-          <div class="section-heading stacked">
-            <div>
-              <p class="eyebrow">Portfolio mix</p>
-              <h2>Optimus verticals</h2>
+          <div class="topbar-meta">
+            <div class="topbar-pill">
+              <span class="topbar-label">Today</span>
+              <span id="currentDateText" class="topbar-value"></span>
             </div>
-            <p class="section-note">Derived from `19 Optimus Vertical` values in the parquet sample.</p>
-          </div>
-          <div id="verticalBars" class="vertical-bars"></div>
-        </aside>
-      </section>
-
-      <section class="layout-grid">
-        <section class="card card-wide details-card">
-          <div class="section-heading stacked">
-            <div>
-              <p class="eyebrow">Selected workspace</p>
-              <h2 id="detailTitle">Choose a workspace</h2>
+            <div class="topbar-pill">
+              <span class="topbar-label">Last refresh</span>
+              <span id="refreshDateText" class="topbar-value"></span>
             </div>
-            <p id="detailSubtitle" class="section-note">Click a card to inspect delivery posture.</p>
-          </div>
-
-          <div id="detailPanel" class="detail-panel">
-            <div class="empty-state">Select a workspace to see staffing composition, PM notes, and recommended actions.</div>
           </div>
         </section>
 
-        <aside class="card">
-          <div class="section-heading stacked">
-            <div>
-              <p class="eyebrow">What this demo proves</p>
-              <h2>Teams embed value</h2>
+        <header class="hero app-view is-active" id="view-overview-hero">
+          <div class="hero-copy">
+            <p class="eyebrow">Optimus SBR x Mavenlink Proof of Concept</p>
+            <h1>Optimus Project Pulse</h1>
+            <p class="hero-text">
+              Move between portfolio review, workspace context, status input, and recent submissions without losing the thread.
+              The experience is designed to be concise, structured, and easy to use inside Teams.
+            </p>
+            <div class="hero-actions">
+              <button class="button button-primary nav-jump-button" type="button" data-view-target="reporting">Open Status Update</button>
+              <button class="button button-secondary nav-jump-button" type="button" data-view-target="workspace">Open Workspace View</button>
             </div>
           </div>
-          <ul class="proof-list">
-            <li>Executives get a concise portfolio snapshot before status meetings.</li>
-            <li>Project managers can triage staffing and delivery pressure in one place.</li>
-            <li>Workspaces can be linked behind a single secure HTTPS endpoint for Teams tabs.</li>
-            <li>The UI can later be wired to live Mavenlink APIs or a curated warehouse layer.</li>
-          </ul>
-        </aside>
-      </section>
-
-      <section class="layout-grid reporting-grid">
-        <section class="card card-wide">
-          <div class="section-heading stacked">
-            <div>
-              <p class="eyebrow">Status reporting</p>
-              <h2>PM update input</h2>
+          <aside class="hero-panel">
+            <div class="hero-panel-card">
+              <span class="panel-kicker">Today's PM brief</span>
+              <h2 id="pmBriefTitle"></h2>
+              <p id="pmBriefText"></p>
+              <ul id="pmBriefList" class="brief-list"></ul>
             </div>
-            <p class="section-note">Capture health, confidence, blockers, and next steps for the selected workspace. Entries are saved in this browser for the proof of concept.</p>
-          </div>
+          </aside>
+        </header>
 
-          <form id="statusForm" class="status-form">
-            <div class="form-grid">
-              <label class="field">
-                <span class="field-label">Project manager</span>
-                <input id="pmName" name="pmName" type="text" placeholder="Anthony Di Clemente" required>
-              </label>
-              <label class="field">
-                <span class="field-label">Reporting period</span>
-                <input id="reportingPeriod" name="reportingPeriod" type="text" placeholder="Week of March 18, 2026" required>
-              </label>
-              <label class="field">
-                <span class="field-label">Project health</span>
-                <select id="projectHealth" name="projectHealth" required>
-                  <option value="Green">Green</option>
-                  <option value="Amber">Amber</option>
-                  <option value="Red">Red</option>
-                </select>
-              </label>
-              <label class="field">
-                <span class="field-label">Delivery confidence</span>
-                <select id="deliveryConfidence" name="deliveryConfidence" required>
-                  <option value="High">High</option>
-                  <option value="Medium">Medium</option>
-                  <option value="Low">Low</option>
-                </select>
-              </label>
-              <label class="field">
-                <span class="field-label">Budget status</span>
-                <select id="budgetStatus" name="budgetStatus" required>
-                  <option value="On track">On track</option>
-                  <option value="At risk">At risk</option>
-                  <option value="Off track">Off track</option>
-                </select>
-              </label>
-              <label class="field">
-                <span class="field-label">Schedule status</span>
-                <select id="scheduleStatus" name="scheduleStatus" required>
-                  <option value="On track">On track</option>
-                  <option value="At risk">At risk</option>
-                  <option value="Off track">Off track</option>
-                </select>
-              </label>
-            </div>
+        <section class="summary-grid app-view is-active" id="view-overview">
+          <section class="summary-grid-inner" id="summaryGrid"></section>
 
-            <div class="form-grid full">
-              <label class="field field-wide">
-                <span class="field-label">Executive summary</span>
-                <textarea id="executiveSummary" name="executiveSummary" rows="3" placeholder="Short summary for leadership..." required></textarea>
-              </label>
-              <label class="field field-wide">
-                <span class="field-label">Key accomplishments</span>
-                <textarea id="accomplishments" name="accomplishments" rows="3" placeholder="What moved forward this period?"></textarea>
-              </label>
-              <label class="field field-wide">
-                <span class="field-label">Top blockers / risks</span>
-                <textarea id="risksBlockers" name="risksBlockers" rows="3" placeholder="Dependencies, client decisions, staffing issues..."></textarea>
-              </label>
-              <label class="field field-wide">
-                <span class="field-label">Decisions needed</span>
-                <textarea id="decisionsNeeded" name="decisionsNeeded" rows="3" placeholder="What do you need from sponsors or leadership?"></textarea>
-              </label>
-              <label class="field field-wide">
-                <span class="field-label">Next steps</span>
-                <textarea id="nextStepsInput" name="nextStepsInput" rows="3" placeholder="What happens next?"></textarea>
-              </label>
-            </div>
+          <section class="layout-grid app-block">
+            <section class="card card-wide" id="portfolio">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">Portfolio command centre</p>
+                  <h2>Workspace watchlist</h2>
+                </div>
+                <div class="toolbar">
+                  <label class="filter-label" for="projectFilter">View</label>
+                  <select id="projectFilter">
+                    <option value="all">All workspaces</option>
+                    <option value="client">Client delivery</option>
+                    <option value="internal">Internal / SG&amp;A</option>
+                  </select>
+                </div>
+              </div>
+              <div id="projectCards" class="project-cards"></div>
+            </section>
 
-            <div class="form-actions">
-              <button class="button button-primary" type="submit">Save Status Report</button>
-              <button id="clearDraftButton" class="button button-secondary" type="button">Clear Draft</button>
-              <span id="saveMessage" class="save-message" aria-live="polite"></span>
-            </div>
-          </form>
+            <aside class="card auto-card">
+              <div class="section-heading stacked">
+                <div>
+                  <p class="eyebrow">Portfolio mix</p>
+                  <h2>Optimus verticals</h2>
+                </div>
+                <p class="section-note">Derived from `19 Optimus Vertical` values in the parquet sample.</p>
+              </div>
+              <div id="verticalBars" class="vertical-bars"></div>
+            </aside>
+          </section>
         </section>
 
-        <aside class="card">
-          <div class="section-heading stacked">
-            <div>
-              <p class="eyebrow">Saved updates</p>
-              <h2>Recent reports</h2>
-            </div>
-            <p class="section-note">Latest entries captured in the app for the selected workspace.</p>
-          </div>
-          <div id="reportHistory" class="report-history"></div>
-        </aside>
-      </section>
-    </main>
+        <section class="app-view" id="view-workspace">
+          <section class="layout-grid app-block">
+            <section class="card card-wide details-card">
+              <div class="section-heading stacked">
+                <div>
+                  <p class="eyebrow">Selected workspace</p>
+                  <h2 id="detailTitle">Choose a workspace</h2>
+                </div>
+                <p id="detailSubtitle" class="section-note">Click a card to inspect delivery posture.</p>
+              </div>
+
+              <div id="detailPanel" class="detail-panel">
+                <div class="empty-state">Select a workspace to see staffing composition, PM notes, and recommended actions.</div>
+              </div>
+            </section>
+
+            <aside class="card">
+              <div class="section-heading stacked">
+                <div>
+                  <p class="eyebrow">Workspace actions</p>
+                  <h2>Quick moves</h2>
+                </div>
+              </div>
+              <div class="quick-actions">
+                <button class="button button-primary nav-jump-button" type="button" data-view-target="reporting">Update this project</button>
+                <button class="button button-secondary nav-jump-button" type="button" data-view-target="history">View saved reports</button>
+              </div>
+              <ul class="proof-list">
+                <li>Review latest submitted health and confidence before status meetings.</li>
+                <li>Use this screen as the PM's project snapshot.</li>
+                <li>Push users into the update form from here instead of making them scroll.</li>
+              </ul>
+            </aside>
+          </section>
+        </section>
+
+        <section class="app-view" id="view-reporting">
+          <section class="layout-grid reporting-grid app-block">
+            <section class="card card-wide">
+              <div class="section-heading stacked">
+                <div>
+                  <p class="eyebrow">Status reporting</p>
+                  <h2>PM update input</h2>
+                </div>
+                <p class="section-note">Capture health, confidence, blockers, and next steps for the selected workspace. Entries are saved in this browser for the proof of concept.</p>
+              </div>
+
+              <form id="statusForm" class="status-form">
+                <div class="form-grid compact-grid">
+                  <label class="field">
+                    <span class="field-label">Project manager</span>
+                    <input id="pmName" name="pmName" type="text" placeholder="Anthony Di Clemente" required>
+                  </label>
+                  <label class="field">
+                    <span class="field-label">Reporting period</span>
+                    <input id="reportingPeriod" name="reportingPeriod" type="text" placeholder="Week of March 18, 2026" required>
+                  </label>
+                  <label class="field">
+                    <span class="field-label">Project health</span>
+                    <select id="projectHealth" name="projectHealth" required>
+                      <option value="Green">Green</option>
+                      <option value="Amber">Amber</option>
+                      <option value="Red">Red</option>
+                    </select>
+                  </label>
+                  <label class="field">
+                    <span class="field-label">Delivery confidence</span>
+                    <select id="deliveryConfidence" name="deliveryConfidence" required>
+                      <option value="High">High</option>
+                      <option value="Medium">Medium</option>
+                      <option value="Low">Low</option>
+                    </select>
+                  </label>
+                  <label class="field">
+                    <span class="field-label">Budget status</span>
+                    <select id="budgetStatus" name="budgetStatus" required>
+                      <option value="On track">On track</option>
+                      <option value="At risk">At risk</option>
+                      <option value="Off track">Off track</option>
+                    </select>
+                  </label>
+                  <label class="field">
+                    <span class="field-label">Schedule status</span>
+                    <select id="scheduleStatus" name="scheduleStatus" required>
+                      <option value="On track">On track</option>
+                      <option value="At risk">At risk</option>
+                      <option value="Off track">Off track</option>
+                    </select>
+                  </label>
+                </div>
+
+                <div class="form-grid full">
+                  <label class="field field-wide">
+                    <span class="field-label">Executive summary</span>
+                    <textarea id="executiveSummary" name="executiveSummary" rows="2" placeholder="Short summary for leadership..." required></textarea>
+                  </label>
+                  <label class="field">
+                    <span class="field-label">Key accomplishments</span>
+                    <textarea id="accomplishments" name="accomplishments" rows="2" placeholder="What moved forward this period?"></textarea>
+                  </label>
+                  <label class="field">
+                    <span class="field-label">Top blockers / risks</span>
+                    <textarea id="risksBlockers" name="risksBlockers" rows="2" placeholder="Dependencies, client decisions, staffing issues..."></textarea>
+                  </label>
+                  <label class="field">
+                    <span class="field-label">Decisions needed</span>
+                    <textarea id="decisionsNeeded" name="decisionsNeeded" rows="2" placeholder="What do you need from sponsors or leadership?"></textarea>
+                  </label>
+                  <label class="field">
+                    <span class="field-label">Next steps</span>
+                    <textarea id="nextStepsInput" name="nextStepsInput" rows="2" placeholder="What happens next?"></textarea>
+                  </label>
+                </div>
+
+                <div class="form-actions sticky-actions">
+                  <button class="button button-primary" type="submit">Save Status Report</button>
+                  <button id="clearDraftButton" class="button button-secondary" type="button">Clear Draft</button>
+                  <span id="saveMessage" class="save-message" aria-live="polite"></span>
+                </div>
+              </form>
+            </section>
+
+            <aside class="card">
+              <div class="section-heading stacked">
+                <div>
+                  <p class="eyebrow">Reporting guidance</p>
+                  <h2>What to enter</h2>
+                </div>
+              </div>
+              <ul class="proof-list">
+                <li>Keep executive summary to the one-minute leadership version.</li>
+                <li>Use blockers for escalations, not every task detail.</li>
+                <li>Use next steps as clear PM-owned actions.</li>
+                <li>Keep this form short enough to complete inside Teams.</li>
+              </ul>
+            </aside>
+          </section>
+        </section>
+
+        <section class="app-view" id="view-history">
+          <section class="layout-grid app-block">
+            <section class="card card-wide">
+              <div class="section-heading stacked">
+                <div>
+                  <p class="eyebrow">Saved updates</p>
+                  <h2>Recent reports</h2>
+                </div>
+                <p class="section-note">Latest entries captured in the app for the selected workspace.</p>
+              </div>
+              <div id="reportHistory" class="report-history"></div>
+            </section>
+
+            <aside class="card">
+              <div class="section-heading stacked">
+                <div>
+                  <p class="eyebrow">Why this matters</p>
+                  <h2>Teams embed value</h2>
+                </div>
+              </div>
+              <ul class="proof-list">
+                <li>Executives get a concise portfolio snapshot before status meetings.</li>
+                <li>Project managers can triage staffing and delivery pressure in one place.</li>
+                <li>Workspaces can be linked behind a single secure HTTPS endpoint for Teams tabs.</li>
+                <li>The UI can later be wired to live Mavenlink APIs or a curated warehouse layer.</li>
+              </ul>
+            </aside>
+          </section>
+        </section>
+      </main>
+    </div>
   </div>
 
   <script src="./data.js"></script>

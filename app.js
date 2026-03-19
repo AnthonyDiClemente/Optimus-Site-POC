@@ -6,7 +6,6 @@ const detailTitle = document.getElementById("detailTitle");
 const detailSubtitle = document.getElementById("detailSubtitle");
 const detailPanel = document.getElementById("detailPanel");
 const secureLaunchLink = document.getElementById("secureLaunchLink");
-const secureLaunchText = document.getElementById("secureLaunchText");
 const pmBriefTitle = document.getElementById("pmBriefTitle");
 const pmBriefText = document.getElementById("pmBriefText");
 const pmBriefList = document.getElementById("pmBriefList");
@@ -14,9 +13,16 @@ const statusForm = document.getElementById("statusForm");
 const reportHistory = document.getElementById("reportHistory");
 const saveMessage = document.getElementById("saveMessage");
 const clearDraftButton = document.getElementById("clearDraftButton");
+const navButtons = document.querySelectorAll(".nav-button");
+const navJumpButtons = document.querySelectorAll(".nav-jump-button");
+const appViews = document.querySelectorAll(".app-view");
+const overviewHero = document.getElementById("view-overview-hero");
+const currentDateText = document.getElementById("currentDateText");
+const refreshDateText = document.getElementById("refreshDateText");
 
 let activeFilter = "all";
 let activeProjectId = appData.projects[0].id;
+let activeView = "overview";
 const storageKey = "optimus-pm-status-reports-v1";
 const draftStoragePrefix = "optimus-pm-status-draft-";
 let statusReports = loadStatusReports();
@@ -65,6 +71,44 @@ function setSaveMessage(message) {
   setSaveMessage.timeoutId = window.setTimeout(() => {
     saveMessage.textContent = "";
   }, 3000);
+}
+
+function renderTopbarDates() {
+  const now = new Date();
+  currentDateText.textContent = now.toLocaleDateString(undefined, {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    year: "numeric"
+  });
+  refreshDateText.textContent = now.toLocaleTimeString(undefined, {
+    hour: "numeric",
+    minute: "2-digit"
+  });
+}
+
+function setActiveView(viewName) {
+  activeView = viewName;
+  let activeViewElement = null;
+  if (overviewHero) {
+    overviewHero.classList.toggle("is-active", viewName === "overview");
+  }
+  appViews.forEach((view) => {
+    if (view === overviewHero) {
+      return;
+    }
+    const isActive = view.id === `view-${viewName}`;
+    view.classList.toggle("is-active", isActive);
+    if (isActive) {
+      activeViewElement = view;
+    }
+  });
+  navButtons.forEach((button) => {
+    button.classList.toggle("is-active", button.dataset.view === viewName);
+  });
+  if (activeViewElement) {
+    activeViewElement.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 }
 
 function renderSummary() {
@@ -153,6 +197,9 @@ function renderProjects() {
       renderDetail();
       populateFormForProject();
       renderReportHistory();
+      if (activeView === "workspace" || activeView === "reporting" || activeView === "history") {
+        setActiveView(activeView);
+      }
     });
   });
 }
@@ -322,6 +369,7 @@ function handleStatusSubmit(event) {
   renderReportHistory();
   populateFormForProject();
   setSaveMessage("Status report saved.");
+  setActiveView("history");
 }
 
 function attachEvents() {
@@ -336,12 +384,22 @@ function attachEvents() {
   statusForm.addEventListener("submit", handleStatusSubmit);
   statusForm.addEventListener("input", saveDraft);
   clearDraftButton.addEventListener("click", clearDraft);
+  navButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      setActiveView(button.dataset.view);
+    });
+  });
+  navJumpButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      setActiveView(button.dataset.viewTarget);
+    });
+  });
 }
 
 function init() {
   const resolvedLaunchUrl = appData.secureLaunchUrl || window.location.origin;
   secureLaunchLink.href = resolvedLaunchUrl;
-  secureLaunchText.textContent = resolvedLaunchUrl;
+  renderTopbarDates();
   renderSummary();
   renderBrief();
   renderVerticals();
@@ -349,6 +407,7 @@ function init() {
   renderDetail();
   populateFormForProject();
   renderReportHistory();
+  setActiveView(activeView);
   attachEvents();
 }
 
