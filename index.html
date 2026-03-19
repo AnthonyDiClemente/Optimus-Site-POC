@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Optimus SBR Mavenlink PM Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Optimus SBR x Mavenlink Proof of Concept</p>
+        <h1>Project managers get a live portfolio read without opening five tools.</h1>
+        <p class="hero-text">
+          This concept uses your attached Mavenlink-style parquet sample to frame workspaces, staffing pressure,
+          vertical mix, and delivery risk in a Teams-friendly interface.
+        </p>
+        <div class="hero-actions">
+          <a id="secureLaunchLink" class="button button-primary" href="#" target="_blank" rel="noreferrer">Open Secure Preview</a>
+          <a class="button button-secondary" href="#portfolio">Jump to Portfolio</a>
+        </div>
+        <div class="hero-meta">
+          <div>
+            <span class="meta-label">HTTPS link</span>
+            <span id="secureLaunchText" class="meta-value"></span>
+          </div>
+          <div>
+            <span class="meta-label">Teams-ready</span>
+            <span class="meta-value">Static site deployable to SharePoint, Azure Static Web Apps, or GitHub Pages</span>
+          </div>
+        </div>
+      </div>
+      <aside class="hero-panel">
+        <div class="hero-panel-card">
+          <span class="panel-kicker">Today's PM brief</span>
+          <h2 id="pmBriefTitle"></h2>
+          <p id="pmBriefText"></p>
+          <ul id="pmBriefList" class="brief-list"></ul>
+        </div>
+      </aside>
+    </header>
+
+    <main>
+      <section class="summary-grid" id="summaryGrid"></section>
+
+      <section class="layout-grid" id="portfolio">
+        <section class="card card-wide">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Portfolio command centre</p>
+              <h2>Workspace watchlist</h2>
+            </div>
+            <div class="toolbar">
+              <label class="filter-label" for="projectFilter">View</label>
+              <select id="projectFilter">
+                <option value="all">All workspaces</option>
+                <option value="client">Client delivery</option>
+                <option value="internal">Internal / SG&amp;A</option>
+              </select>
+            </div>
+          </div>
+          <div id="projectCards" class="project-cards"></div>
+        </section>
+
+        <aside class="card">
+          <div class="section-heading stacked">
+            <div>
+              <p class="eyebrow">Portfolio mix</p>
+              <h2>Optimus verticals</h2>
+            </div>
+            <p class="section-note">Derived from `19 Optimus Vertical` values in the parquet sample.</p>
+          </div>
+          <div id="verticalBars" class="vertical-bars"></div>
+        </aside>
+      </section>
+
+      <section class="layout-grid">
+        <section class="card card-wide details-card">
+          <div class="section-heading stacked">
+            <div>
+              <p class="eyebrow">Selected workspace</p>
+              <h2 id="detailTitle">Choose a workspace</h2>
+            </div>
+            <p id="detailSubtitle" class="section-note">Click a card to inspect delivery posture.</p>
+          </div>
+
+          <div id="detailPanel" class="detail-panel">
+            <div class="empty-state">Select a workspace to see staffing composition, PM notes, and recommended actions.</div>
+          </div>
+        </section>
+
+        <aside class="card">
+          <div class="section-heading stacked">
+            <div>
+              <p class="eyebrow">What this demo proves</p>
+              <h2>Teams embed value</h2>
+            </div>
+          </div>
+          <ul class="proof-list">
+            <li>Executives get a concise portfolio snapshot before status meetings.</li>
+            <li>Project managers can triage staffing and delivery pressure in one place.</li>
+            <li>Workspaces can be linked behind a single secure HTTPS endpoint for Teams tabs.</li>
+            <li>The UI can later be wired to live Mavenlink APIs or a curated warehouse layer.</li>
+          </ul>
+        </aside>
+      </section>
+    </main>
+  </div>
+
+  <script src="./data.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
