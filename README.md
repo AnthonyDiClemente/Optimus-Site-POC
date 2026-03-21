@@ -40,6 +40,19 @@ Recommended deployment path:
 
 After deployment, Azure will assign a hostname like `https://<app-name>.azurestaticapps.net`.
 
+## Access control
+
+The `staticwebapp.config.json` file is configured to:
+
+- require authentication for all app routes
+- redirect unauthenticated users to Microsoft Entra login
+- block GitHub login
+
+Important:
+
+- this protects the site from anonymous public access
+- tenant-specific identity restrictions may still require additional Azure Static Web Apps authentication setup depending on your plan and Entra configuration
+
 ## Open locally over HTTPS
 
 1. Run `.\run-local-https.ps1`
