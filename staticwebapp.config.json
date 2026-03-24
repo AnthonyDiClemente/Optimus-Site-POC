@@ -24,9 +24,9 @@
   },
   "globalHeaders": {
     "X-Content-Type-Options": "nosniff",
-    "X-Frame-Options": "SAMEORIGIN",
     "Referrer-Policy": "strict-origin-when-cross-origin",
-    "Cache-Control": "no-cache"
+    "Cache-Control": "no-cache",
+    "Content-Security-Policy": "frame-ancestors 'self' https://teams.microsoft.com https://*.teams.microsoft.com https://*.skype.com https://*.office.com https://*.office365.com https://*.cloud.microsoft;"
   },
   "responseOverrides": {
     "401": {
