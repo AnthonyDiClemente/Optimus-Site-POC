@@ -1,20 +1,7 @@
 {
-  "routes": [
-    {
-      "route": "/.auth/login/github",
-      "statusCode": 404
-    },
-    {
-      "route": "/*",
-      "allowedRoles": [
-        "authenticated"
-      ]
-    }
-  ],
   "navigationFallback": {
     "rewrite": "/index.html",
     "exclude": [
-      "/.auth/*",
       "/styles.css",
       "/app.js",
       "/data.js",
@@ -27,12 +14,6 @@
     "Referrer-Policy": "strict-origin-when-cross-origin",
     "Cache-Control": "no-cache",
     "Content-Security-Policy": "frame-ancestors 'self' https://teams.microsoft.com https://*.teams.microsoft.com https://*.skype.com https://*.office.com https://*.office365.com https://*.cloud.microsoft;"
-  },
-  "responseOverrides": {
-    "401": {
-      "statusCode": 302,
-      "redirect": "/.auth/login/aad"
-    }
   },
   "mimeTypes": {
     ".json": "application/json"
